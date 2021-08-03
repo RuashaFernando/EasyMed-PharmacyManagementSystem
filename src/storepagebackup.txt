@@ -1,0 +1,41 @@
+<table>
+     <tr> 
+              <th>Med Name & Brand</TH>
+              <th>Med Price</TH>
+              <th>Med Description </TH>
+            </tr><br>
+
+          <?php
+           require_once('connection.php');
+
+          $con= mysqli_connect('127.0.0.1:3308','root','','testapp');
+          $db =mysqli_select_db($con,'testapp');
+          
+          if(isset($_POST['search']))
+          {
+          $medname=($_POST['nameAndBrand']);
+
+          $query = "SELECT * FROM 'medapp' where 'nameBrand='$medname'";
+          $query_run= mysqli_query($con,$query);
+
+          while($row = mysqli_fetch_array($query_run))
+          {
+
+             ?>
+             <tr>
+                   <td> <?php echo $row['medName&Brand'];?> </td>
+                   <td> <?php echo $row['medPrice'];?> </td>
+                   <td> <?php echo $row['medDescription'];?> </td>
+                    
+
+             </tr>
+
+             <?php
+          }
+
+          }
+          
+       ?>
+      
+
+    </table>
